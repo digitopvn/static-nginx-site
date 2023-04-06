@@ -3,7 +3,7 @@ version: "3"
 services:
     static-site-framework:
         container_name: static-site-framework
-        image: asia.gcr.io/top-group-k8s/static-site:lite
+        build: .
         ports:
             - 8000:80
         # volumes:
