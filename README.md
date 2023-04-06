@@ -12,3 +12,6 @@ Require [Docker](https://docker.com/) to be installed.
 
 Run `docker-compose up` to start the container and access your site at: http://localhost:8000
 
+## Deploy
+
+Use [Diginext](https://github.com/digitopvn/diginext) command to deploy: `dx deploy`
