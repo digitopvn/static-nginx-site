@@ -1,0 +1,39 @@
+name: Docker Build & Push Workflow
+
+# TRIGGERS
+on:
+  push:
+    branches:
+      - main
+
+# ENVIRONMENT VARIABLES
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+# CI/CD STEPS
+jobs:
+  docker-release:
+    name: Release Docker Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.CI_GITHUB_TOKEN }}
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+  
+      - name: Build Docker image
+        run: docker build -t digitop/static:1.0.0 -t digitop/static:latest .
+      
+      - name: Push to Docker Hub
+        run: docker push digitop/static:1.0.0 digitop/static:latest
+
+      
+
