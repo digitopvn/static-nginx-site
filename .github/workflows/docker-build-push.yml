@@ -33,7 +33,7 @@ jobs:
         run: docker build -t digitop/static:1.0.0 -t digitop/static:latest .
       
       - name: Push to Docker Hub
-        run: docker push digitop/static:1.0.0 digitop/static:latest
+        run: docker push digitop/static:1.0.0 && docker push digitop/static:latest
 
       
 
