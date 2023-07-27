@@ -1,0 +1,33 @@
+name: Deploy to Diginext
+
+# TRIGGERS
+on:
+  push:
+    branches:
+      - deploy
+
+# ENVIRONMENT VARIABLES
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+# CI/CD STEPS
+jobs:
+  docker-release:
+    name: Deploy to Diginext
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy to Diginext
+        uses: digitopvn/diginext-actions@v0
+        with:
+          dx_key: ${{ secrets.DX_KEY }}
+          cluster: topgroup-k3s
+          registry: digitopdockerhub-u
+
+      
+
