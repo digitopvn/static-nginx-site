@@ -1,4 +1,4 @@
-FROM nginx:alpine-slim
+FROM nginx:stable-alpine-slim
 
 # with BASE_PATH
 # ARG NEXT_PUBLIC_BASE_PATH=""
