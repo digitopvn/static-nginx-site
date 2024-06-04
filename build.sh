@@ -1,7 +1,10 @@
 #!/bin/bash
 
 set -e
-VERSION=1.0.1
+
+# ./build.sh [VERSION]
+
+VERSION=${1:-latest}
 
 docker build -t digitop/static:$VERSION -t digitop/static:latest .
 

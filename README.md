@@ -18,6 +18,14 @@ Use [Diginext](https://github.com/digitopvn/diginext) command to deploy: `dx dep
 
 ## Docker
 
+### Build & push
+
+```bash
+./build.sh [VERSION]
+```
+
+### Pull & run
+
 ```bash
 docker pull digitop/static:latest
 docker run -p 80:80 digitop/static:latest
