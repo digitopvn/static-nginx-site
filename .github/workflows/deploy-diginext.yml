@@ -1,0 +1,32 @@
+name: Deploy to Diginext
+
+# TRIGGERS
+on:
+  push:
+    branches:
+      - main
+
+# ENVIRONMENT VARIABLES
+env:
+  CLUSTER: topgroup-k3s
+  REGISTRY: digitopdockerhub
+
+# CI/CD STEPS
+jobs:
+  docker-release:
+    name: Deploy using Diginext
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Deploy to TOP DEV LOCAL using Diginext
+        uses: digitopvn/diginext-actions@v1.10
+        with:
+          api_key: ${{ secrets.DX_API_KEY }}
+          cluster: topgroup-k3s
+          registry: digitopdockerhub
+          tail: true
+          port: "80"

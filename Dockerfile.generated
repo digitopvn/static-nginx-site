@@ -1,0 +1,16 @@
+
+# For static HTML projects
+FROM nginx:latest AS static-html
+COPY build /usr/share/nginx/html
+
+# For JavaScript, TypeScript, Node.js, Rust, Python, or Go projects
+FROM <optimized-base-image>:latest AS build-stage
+WORKDIR /app
+COPY . .
+RUN <build-commands>
+
+# Final image
+FROM <optimized-base-image>:latest
+WORKDIR /app
+COPY --from=static-html /usr/share/nginx/html /usr/share/nginx/html
+COPY --from=build-stage /app /app

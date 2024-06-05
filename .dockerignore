@@ -1,1 +1,8 @@
+.github/
+.git/
+
+Dockerfile
+Dockerfile.*
+
+build.sh
 .git
