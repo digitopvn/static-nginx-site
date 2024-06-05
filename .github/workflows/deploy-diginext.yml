@@ -4,7 +4,7 @@ name: Deploy to Diginext
 on:
   push:
     branches:
-      - deploy
+      - main
 
 # ENVIRONMENT VARIABLES
 env:
@@ -28,4 +28,5 @@ jobs:
           api_key: ${{ secrets.DX_API_KEY }}
           cluster: topgroup-k3s
           registry: digitopdockerhub
+          tail: true
           port: "80"
